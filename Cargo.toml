@@ -1,0 +1,62 @@
+[package]
+name = "deser-incomplete"
+version = "0.0.1"
+authors = ["Bram Geron"]
+edition = "2021"
+description = "Deserialize incomplete data with Serde"
+license = "MIT OR Apache-2.0"
+keywords = ["json", "serde", "deserialization", "parsing", "streaming"]
+rust-version = "1.75"
+
+[features]
+default = ["rand", "serde_json", "tracing"]
+serde_json = ["dep:serde_json"]
+unstable = []
+
+[dependencies]
+rand = { version = "0.8", optional = true }
+serde = "1.0.215"
+serde_json = { version = "1.0.133", optional = true}
+serde_yaml = { version = "0.9", optional = true}
+static_assertions = "1.1.0"
+tap = "1.0.1"
+thiserror = "2.0.3"
+tracing = { version = "0.1", optional = true }
+
+[dev-dependencies]
+ansi-to-tui = { version = "7.0.0", default-features = true }
+anyhow = "1.0.95"
+clap = { version = "4.5.26", features = ["derive"] }
+crossterm = { version = "0.28.1", features = ["event-stream"] }
+erased-serde = "0.4.5"
+futures = "0.3.31"
+indexmap = { version = "2.7.0", features = ["serde"] }
+insta = { version = "1.42.0", features = ["ron"] }
+interprocess = "2.2.2"
+itertools = "0.13.0"
+ratatui = { version = "0.29.0", features = ["document-features"] }
+ron = "0.7"
+serde = { version = "1", features = ["derive"]}
+serde_json = { version = "1", features = ["preserve_order"] }
+tokio = { version = "1.43.0", features = ["fs", "io-std", "io-util", "macros", "process", "rt", "rt-multi-thread", "signal"] }
+tokio-stream = { version = "0.1.17", features = ["io-util", "sync"] }
+tokio-util = { version = "0.7.13", features = ["io"] }
+tracing-subscriber = "0.3"
+tui-textarea = "0.7.0"
+unicode-segmentation = "1.12.0"
+
+[[test]]
+name = "output"
+required-features = ["serde_json", "unstable"]
+
+[[example]]
+name = "live"
+required-features = ["serde_json", "tracing"]
+
+[[example]]
+name = "repair-deser"
+required-features = ["serde_json", "tracing"]
+
+[[example]]
+name = "du"
+required-features = ["serde_json", "tracing"]

@@ -1,0 +1,14 @@
+
+_list:
+    just --list
+
+build-all: build-live-travel-modes build-du-live
+
+build-live-travel-modes:
+    vhs live-travel-modes.tape
+
+build-du-live:
+    vhs du-live.tape
+
+clean:
+    rm -rf target
