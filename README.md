@@ -13,7 +13,7 @@ typing JSON into a terminal program. The JSON is an array of objects.
 The program gradually renders the JSON input as Rust debug output, and as a table.
 The fields of the Rust struct are printed even though they are missing in the JSON input.
 The example program is called "live".' title="Demo that shows parsing JSON as it is typed by the user"
-style="max-height: 300px; height: auto; width: auto;">
+width="60%" height="60%">
 
 Here, we wrapped `serde_json` with `deser-incomplete`, and printed the Rust
 debug representation of the result. We also reserialized to JSON and
@@ -30,7 +30,7 @@ of a bunch of directories and outputs a JSON array of objects. The sink program
 pretty-prints the JSON table. Computing the disk size takes a while, and you can
 see which directory is being analyzed because the result for that directory is empty
 while it is computing.' title='Demo that shows parsing JSON as it is generated live from another program that mimics du'
-style="max-height: 350px; height: auto; width: auto;">
+width="60%" height="60%">
 
 `deser-incomplete` sits between `#[serde(Deserialize)]` and the data format. When a parse
 error is detected (presumably because the input ended), it safely halts parsing.
@@ -38,7 +38,7 @@ error is detected (presumably because the input ended), it safely halts parsing.
 <img src="https://raw.githubusercontent.com/bgeron/deser-incomplete/rendered/assets/deser-incomplete-blocks-errors.png" alt='This library sits
 in between Deserialize and Deserializer. Information about the parsed data is successfully
 sent from Deserializer through deser-incomplete to Deserialize. But errors from Deserializer are
-blocked.' style="max-height: 250px; height: auto; width: auto;">
+blocked.' width="60%" height="60%">
 
 ### How to use: JSON and YAML
 
