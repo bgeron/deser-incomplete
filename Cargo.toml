@@ -1,6 +1,6 @@
 [package]
 name = "deser-incomplete"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Bram Geron"]
 edition = "2021"
 description = "Deserialize incomplete or broken data with Serde"
