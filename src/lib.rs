@@ -4,7 +4,7 @@
     allow(unused_variables, unused_imports, dead_code, unused_mut)
 )]
 
-//! # Deserialize incomplete or broken data with Serde
+//! # deser-incomplete: Deserialize incomplete or broken data with Serde
 //!
 //! Parse incomplete or broken data with existing Serde data formats.
 //!

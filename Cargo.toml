@@ -7,6 +7,7 @@ description = "Deserialize incomplete or broken data with Serde"
 license = "MIT OR Apache-2.0"
 keywords = ["json", "serde", "deserialization", "parsing", "streaming"]
 rust-version = "1.75"
+repository = "https://github.com/bgeron/deser-incomplete/"
 
 [features]
 default = ["rand", "serde_json", "tracing"]

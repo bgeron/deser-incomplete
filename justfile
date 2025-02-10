@@ -79,7 +79,7 @@ doc-deps-open:
 
 generate-readme:
     # Remove markdown code links
-    cargo readme \
+    cargo readme --no-indent-headings \
         | rg --passthru '\[(`[:\w]+`)\]' -r '$1' > README.md.generated
     if diff -q README.md.generated README.md; then rm README.md.generated; fi
 

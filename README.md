@@ -1,6 +1,6 @@
-# deser-incomplete
+![Documentation](https://img.shields.io/docsrs/deser-incomplete/0.0.1)
 
-## Deserialize incomplete or broken data with Serde
+# deser-incomplete: Deserialize incomplete or broken data with Serde
 
 Parse incomplete or broken data with existing Serde data formats.
 
@@ -40,7 +40,7 @@ in between Deserialize and Deserializer. Information about the parsed data is su
 sent from Deserializer through deser-incomplete to Deserialize. But errors from Deserializer are
 blocked.' width="60%" height="60%">
 
-### How to use: JSON and YAML
+## How to use: JSON and YAML
 
 ```rust
 let result: Result<Vec<u32>, deser_incomplete::Error<serde_json::Error>>
@@ -63,7 +63,7 @@ $ echo '[3, 4' | repair-deser    # JSON by default
 [3,4]
 ```
 
-### How to use: other data formats
+## How to use: other data formats
 
 - You need to explain how to create the `Deserializer` by implementing `Source`.
 
@@ -84,7 +84,7 @@ $ echo '[3, 4' | repair-deser    # JSON by default
   I expect that binary formats don't need this preprocessing.
 
 
-### How this works internally
+## How this works internally
 
 The implementation sits in between `Deserialize`, `Deserializer`, and `Visitor`,
 gathers metadata during the parse, and saves successful sub-parses. It also "backtracks":
@@ -119,7 +119,7 @@ Here are the main techniques.
 
 4. Before deserializing, we append a random trailer.
 
-##### Random trailer
+#### Random trailer
 
 Additionally we have a "random trailer" technique to get incomplete strings to parse.
 Unfortunately this technique is specific to the data format. This library implements
@@ -128,7 +128,7 @@ it for JSON and YAML.
 This technique is not applied by default for other data formats. Even with JSON/YAML, this
 technique can be turned off with `Options::disable_random_tag`.
 
-##### Random trailer for JSON
+#### Random trailer for JSON
 
 We actually [append][append-impl] `tRANDOM"` to every JSON input, where `RANDOM` are some randomly chosen
 letters. It turns out that `serde_json` can parse any prefix of valid JSON, as long
@@ -153,12 +153,12 @@ as we concatenate `tRANDOM"` to it. Some examples:
 
 [append-impl]: https://github.com/bgeron/deser-incomplete/blob/main/src/random_trailer/json.rs
 
-##### Inspecting at runtime
+#### Inspecting at runtime
 
 There is extensive logging through the `tracing` library, which becomes visible if you
 initialize the library.
 
-##### Guiding principles
+#### Guiding principles
 
 The logic was hand-tweaked to the following criteria:
 
@@ -182,7 +182,7 @@ parsing configurations.
 
 [snapshot-tests]: https://github.com/bgeron/deser-incomplete/blob/main/tests/output/json_output/seq.rs
 
-### Notes and limitations
+## Notes and limitations
 
 - Ideally, your data format should be relatively greedy, in the sense that it
   generates information quickly and does not need to look ahead in the serialized
@@ -206,8 +206,22 @@ parsing configurations.
 
 Have fun!
 
-### Acknowledgements
+## Acknowledgements
 
 Thanks to Annisa Chand and @XAMPPRocky for useful feedback.
 
-License: MIT OR Apache-2.0
+## License
+
+Licensed under either of
+
+* Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or https://www.apache.org/licenses/LICENSE-2.0)
+* MIT license ([LICENSE-MIT](LICENSE-MIT) or https://opensource.org/licenses/MIT)
+
+at your option.
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally
+submitted for inclusion in the work by you, as defined in the Apache-2.0
+license, shall be dual licensed as above, without any additional terms or
+conditions.
