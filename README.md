@@ -1,4 +1,4 @@
-![Documentation](https://img.shields.io/docsrs/deser-incomplete/0.1.0)
+![Documentation](https://img.shields.io/docsrs/deser-incomplete/0.1.1)
 
 # deser-incomplete: Deserialize incomplete or broken data with Serde
 
