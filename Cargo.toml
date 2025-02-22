@@ -15,14 +15,14 @@ serde_json = ["dep:serde_json"]
 unstable = []
 
 [dependencies]
-rand = { version = "0.8", optional = true }
+rand = { version = "0.8.4", optional = true }
 serde = "1.0.215"
 serde_json = { version = "1.0.133", optional = true}
 serde_yaml = { version = "0.9", optional = true}
 static_assertions = "1.1.0"
 tap = "1.0.1"
 thiserror = "2.0.3"
-tracing = { version = "0.1", optional = true }
+tracing = { version = "0.1.41", optional = true }
 
 [dev-dependencies]
 ansi-to-tui = { version = "7.0.0", default-features = true }
@@ -39,12 +39,30 @@ ratatui = { version = "0.29.0", features = ["document-features"] }
 ron = "0.7"
 serde = { version = "1", features = ["derive"]}
 serde_json = { version = "1", features = ["preserve_order"] }
+# Old versions of serde_yaml generate different results
+# on our snapshot tests
+serde_yaml = "0.9.20"
 tokio = { version = "1.43.0", features = ["fs", "io-std", "io-util", "macros", "process", "rt", "rt-multi-thread", "signal"] }
 tokio-stream = { version = "0.1.17", features = ["io-util", "sync"] }
 tokio-util = { version = "0.7.13", features = ["io"] }
-tracing-subscriber = "0.3"
+tracing-subscriber = "0.3.6"
 tui-textarea = "0.7.0"
 unicode-segmentation = "1.12.0"
+
+[dev-dependencies.indirect-fix-ahash]
+# Not used directly by us, but ahash 0.8.4 doesn't seem to work
+package = "ahash"
+version = "0.8.7"
+
+[dev-dependencies.indirect-fix-thiserror1]
+# ansi-to-tui seems to need this
+package = "thiserror"
+version = "1.0.20"
+
+[dev-dependencies.indirect-fix-simdutf8]
+# ansi-to-tui seems to need this
+package = "simdutf8"
+version = "0.1.1"
 
 [[test]]
 name = "output"

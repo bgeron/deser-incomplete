@@ -5,7 +5,13 @@ _default: all
 
 dev: fmt clippy-allow-dead
 
-all: fmt clippy test doc check-msrv generate-readme
+all: fmt allchecks audit
+
+# Extra checks that will introduce unnecessary changes (e.g. in Cargo.lock)
+extra: fmt set-minimal-versions allchecks set-max-versions allchecks audit
+
+allchecks: clippy test doc check-msrv generate-readme
+check-minimal: fmt set-minimal-versions allchecks set-max-versions
 
 clean:
     rm -rf target target-*
@@ -14,6 +20,14 @@ clean:
 motivating-example *extra_args:
     @cargo build --target-dir target --example print-slowly --example live
     @cat examples/motivating-example.json-fragment | target/debug/examples/print-slowly -t 0.1 --delay-at-start 2.5 | target/debug/examples/live --schema travel-modes {{extra_args}}
+
+set-minimal-versions:
+    rm -f Cargo.lock
+    cargo +nightly -Z minimal-versions check --all-features --all-targets --keep-going
+
+set-max-versions:
+    rm -f Cargo.lock
+    cargo check # generate Cargo.lock
 
 clippy:
     cargo clippy --all-features
@@ -89,3 +103,5 @@ replace-readme: generate-readme
 tokei:
     tokei --exclude json_output --exclude yaml_output
 
+audit:
+    cargo audit
