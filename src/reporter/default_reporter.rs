@@ -414,7 +414,10 @@ impl Reporter for DefaultReporter {
             ?reason,
             candidate_halting_point_for_next_attempt =
                 candidate_halting_point_for_next_attempt.map(tracing::field::display),
-                halting_point_stack = %FormatSequence::new(halting_point_stack.iter()),
+            // We have to format to a string to avoid a panic (#2).
+            // Passing FormatIterator directly will type-check but panic in
+            // some cases.
+            halting_point_stack = format!("[{}]", FormatIterator::new(halting_point_stack.iter())),
             "start intervention"
         );
     }
@@ -594,15 +597,15 @@ impl Reporter for DefaultReporter {
     }
 }
 
-struct FormatSequence<It>(RefCell<Option<It>>);
+struct FormatIterator<It>(RefCell<Option<It>>);
 
-impl<It> FormatSequence<It> {
+impl<It> FormatIterator<It> {
     fn new(it: It) -> Self {
         Self(RefCell::new(Some(it)))
     }
 }
 
-impl<It> std::fmt::Display for FormatSequence<It>
+impl<It> std::fmt::Display for FormatIterator<It>
 where
     It: Iterator,
     It::Item: std::fmt::Display,
@@ -612,7 +615,7 @@ where
             .0
             .borrow_mut()
             .take()
-            .expect("used FormatSequence twice");
+            .expect("used FormatIterator twice");
         f.write_str("[")?;
         for (i, item) in iterator.enumerate() {
             if i > 0 {
