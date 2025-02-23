@@ -1,4 +1,4 @@
-![Documentation](https://img.shields.io/docsrs/deser-incomplete/{{version}})
+[![Documentation](https://img.shields.io/docsrs/deser-incomplete/{{version}})](https://docs.rs/deser-incomplete/latest/deser_incomplete)
 
 {{readme}}
 
