@@ -234,7 +234,6 @@ macro_rules! trace {
 }
 
 mod attempt;
-mod deserialize;
 pub mod error;
 mod fallback;
 mod options_impl;
