@@ -79,3 +79,7 @@ required-features = ["serde_json", "tracing"]
 [[example]]
 name = "du"
 required-features = ["serde_json", "tracing"]
+
+[[example]]
+name = "usage"
+required-features = ["serde_json", "tracing"]
