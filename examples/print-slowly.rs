@@ -4,6 +4,7 @@ use std::time::Duration;
 use clap::Parser;
 use futures::FutureExt;
 use tokio::io::{stdin, AsyncReadExt, BufReader};
+use tracing_subscriber::EnvFilter;
 use unicode_segmentation::UnicodeSegmentation as _;
 use util::{pop_parsed_from_front, MAXIMUM_SIZE_OF_CODEPOINT};
 
@@ -36,6 +37,7 @@ async fn main() {
         .with_line_number(false)
         .with_target(false)
         .with_writer(std::io::stderr)
+        .with_env_filter(EnvFilter::from_default_env())
         .init();
 
     let args = Args::parse();

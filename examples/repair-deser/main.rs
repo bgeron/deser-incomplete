@@ -15,6 +15,7 @@ mod shared;
 
 use shared::format::{Format, ParseSettings};
 use shared::schema::Schema;
+use tracing_subscriber::EnvFilter;
 
 /// Robustly parse incomplete input (e.g. JSON), and reserialize in some format
 #[derive(Parser, Debug, Clone)]
@@ -53,6 +54,7 @@ async fn main() -> anyhow::Result<()> {
         .with_line_number(false)
         .with_target(false)
         .with_writer(std::io::stderr)
+        .with_env_filter(EnvFilter::from_default_env())
         .init();
 
     let args = Args::parse();

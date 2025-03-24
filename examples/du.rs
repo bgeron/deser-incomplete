@@ -14,6 +14,7 @@ use tokio::task::spawn_blocking;
 use tokio_stream::StreamExt as _;
 use tracing::level_filters::LevelFilter;
 use tracing::{info, warn};
+use tracing_subscriber::EnvFilter;
 
 #[allow(dead_code)]
 #[path = "shared/mod.rs"]
@@ -39,6 +40,7 @@ async fn main() -> anyhow::Result<()> {
         .with_line_number(false)
         .with_target(false)
         .with_writer(std::io::stderr)
+        .with_env_filter(EnvFilter::from_default_env())
         .init();
 
     let args = Args::parse();

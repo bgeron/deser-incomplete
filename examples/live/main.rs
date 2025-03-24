@@ -15,6 +15,7 @@ mod util;
 
 use shared::format::Format;
 use shared::schema::Schema;
+use tracing_subscriber::EnvFilter;
 
 /// Parse input JSON incrementally as it comes in, and show the results
 /// live in the terminal.
@@ -61,6 +62,7 @@ async fn main() -> anyhow::Result<()> {
         .with_line_number(false)
         .with_target(false)
         .with_writer(std::io::stderr)
+        .with_env_filter(EnvFilter::from_default_env())
         .init();
 
     let args = Args::parse();
