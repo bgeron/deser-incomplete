@@ -114,7 +114,7 @@ where
             DeserializeKind::Struct { name: _, fields: _ } => {
                 self.global.config.behavior.backtrack_struct_skip_field
             }
-            DeserializeKind::Enum { .. } => false,
+            DeserializeKind::Enum { .. } => true,
 
             _ => self.global.config.behavior.backtrack_other_skip_item,
         }
@@ -431,9 +431,12 @@ where
         let result = self.inner.struct_variant(fields, wrapped_visitor);
         process_variant_result(&result, self.attempt, &mut self.global.reporter);
 
-        match result {
-            Ok(_) => Ok(value.expect("successful visitor will place its value")),
-            Err(e) => Err(e),
+        match (result, value) {
+            (_, Some(value)) => Ok(value),
+            (Ok(_), None) => {
+                panic!("successful visitor will place its value")
+            }
+            (Err(e), None) => Err(e),
         }
     }
 }

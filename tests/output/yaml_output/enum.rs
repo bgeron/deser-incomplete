@@ -50,7 +50,63 @@ fn test_enum_external() {
           Newtype("az"),
           Tuple("az", "by"),
         ]),
-        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}": Ok([
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\":": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"a": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "a",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"b": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "b",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by": Ok([
           Unit,
           Unit,
           Newtype("az"),
@@ -105,6 +161,16 @@ fn test_enum_external() {
           Unit,
           Newtype("az"),
           Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\":": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
         ]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"": Ok([]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\"": Ok([
@@ -112,6 +178,10 @@ fn test_enum_external() {
           Unit,
           Newtype("az"),
           Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "",
+          ),
         ]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"": Ok([]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\"": Ok([
@@ -119,15 +189,13 @@ fn test_enum_external() {
           Unit,
           Newtype("az"),
           Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "",
+          ),
         ]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"": Ok([]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"": Ok([
-          Unit,
-          Unit,
-          Newtype("az"),
-          Tuple("az", "by"),
-        ]),
-        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}": Ok([
           Unit,
           Unit,
           Newtype("az"),
@@ -202,13 +270,71 @@ fn test_enum_external() {
           Unit,
           Newtype("az"),
         ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+        ]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"]": Ok([
           Unit,
           Unit,
           Newtype("az"),
           Tuple("az", "by"),
         ]),
-        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}": Ok([
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\":": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"a": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "a",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"b": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "b",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by": Ok([
           Unit,
           Unit,
           Newtype("az"),
@@ -243,13 +369,71 @@ fn test_enum_external() {
           Unit,
           Newtype("az"),
         ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+        ]),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"]": Ok([
           Unit,
           Unit,
           Newtype("az"),
           Tuple("az", "by"),
         ]),
-        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}": Ok([
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\":": Err("the maximum number of backtracks has been exceeded (see tracing logs for pointers to avoid a high number of backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"a": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "a",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"b": Ok([
+          Unit,
+          Unit,
+          Newtype("az"),
+          Tuple("az", "by"),
+          Struct(
+            a: "az",
+            b: "b",
+          ),
+        ]),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by": Ok([
           Unit,
           Unit,
           Newtype("az"),
@@ -263,6 +447,10 @@ fn test_enum_external() {
       "strict behavior": {
         "": Ok([]),
         "[": Err("could not find a potential backtrack point (do you have #[serde(default)] on your top-level type? are your settings too strict?) (after 0 backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [": Err("could not find a potential backtrack point (do you have #[serde(default)] on your top-level type? are your settings too strict?) (after 1 backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"": Err("could not find a potential backtrack point (do you have #[serde(default)] on your top-level type? are your settings too strict?) (after 0 backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {": Err("could not find a potential backtrack point (do you have #[serde(default)] on your top-level type? are your settings too strict?) (after 1 backtracks)"),
+        "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}": Err("could not find a potential backtrack point (do you have #[serde(default)] on your top-level type? are your settings too strict?) (after 0 backtracks)"),
         "[\"Unit\", !Unit null, !Newtype \"az\", !Tuple [\"az\", \"by\"], !Struct {\"a\": \"az\", \"b\": \"by\"}]": Ok([
           Unit,
           Unit,
