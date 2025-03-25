@@ -321,7 +321,7 @@ dependencies = [
 
 [[package]]
 name = "deser-incomplete"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "ahash",
  "ansi-to-tui",
